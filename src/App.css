@@ -1,0 +1,380 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.container {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 720px;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* ── Add todo ── */
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.todo-input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 14px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.todo-input:focus {
+  border-color: #6c63ff;
+}
+
+.add-btn {
+  padding: 11px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.add-btn:hover  { background: #574fd6; }
+.add-btn:active { transform: scale(0.97); }
+
+/* ── Search ── */
+
+.search-input {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 14px;
+}
+
+.search-input:focus {
+  border-color: #6c63ff;
+}
+
+/* ── Filter bar ── */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.filter-btn {
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #f0f0f0;
+  color: #555;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.filter-btn:hover {
+  background: #e0deff;
+  color: #6c63ff;
+}
+
+.filter-btn.active {
+  background: #6c63ff;
+  color: #fff;
+}
+
+/* ── Date picker pill ── */
+
+.date-picker-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 20px;
+  background: #f0f0f0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.date-picker-pill.has-date {
+  background: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.cal-icon {
+  display: flex;
+  align-items: center;
+  color: #555;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.date-picker-pill.has-date .cal-icon {
+  color: #fff;
+}
+
+.date-native {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  /* enough width for "YYYY-MM-DD" on desktop */
+  width: 126px;
+}
+
+.date-picker-pill.has-date .date-native {
+  color: #fff;
+}
+
+.date-native::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.date-picker-pill.has-date .date-native::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+.clear-date-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.clear-date-btn:hover {
+  color: #fff;
+}
+
+/* ── Todo list ── */
+
+.empty-message {
+  color: #aaa;
+  text-align: center;
+  font-size: 0.95rem;
+  padding: 20px 0;
+}
+
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.todo-text {
+  font-size: 1rem;
+  color: #333;
+  word-break: break-word;
+  transition: opacity 0.2s;
+}
+
+.todo-text.completed {
+  text-decoration: line-through;
+  opacity: 0.45;
+  color: #888;
+}
+
+.todo-date {
+  font-size: 0.72rem;
+  color: #bbb;
+  margin-top: 3px;
+}
+
+.action-btns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.edit-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid #6c63ff;
+  border-radius: 8px;
+  outline: none;
+}
+
+.edit-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: transparent;
+  color: #6c63ff;
+  border: 1.5px solid #6c63ff;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.edit-btn:hover {
+  background: #6c63ff;
+  color: #fff;
+}
+
+.save-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #6c63ff;
+  color: #fff;
+  border: 1.5px solid #6c63ff;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.save-btn:hover { background: #574fd6; }
+
+.cancel-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: transparent;
+  color: #888;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.cancel-btn:hover {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.delete-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: transparent;
+  color: #e05c5c;
+  border: 1.5px solid #e05c5c;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.delete-btn:hover {
+  background: #e05c5c;
+  color: #fff;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .container {
+    border-radius: 0;
+    min-height: 100vh;
+    padding: 24px 16px;
+    box-shadow: none;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .add-btn {
+    padding: 11px 16px;
+  }
+
+  .date-native {
+    width: 110px;
+  }
+}
+
+@media (max-width: 380px) {
+  .input-row {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .filter-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
